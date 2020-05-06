@@ -1,6 +1,6 @@
 #! /bin/sh
 
-echo ${TIMEZONE:-UTC} > /etc/timezone
+echo ${TIMEZONE} > /etc/timezone
 [ -f /etc/flexget/config.yml ] || cat <<EOF >> /etc/flexget/config.yml
 web_server:
   bind: 0.0.0.0
@@ -16,16 +16,13 @@ schedules: no
 
 EOF
 
-[ -z "$FG_PASSWORD" ] && { FG_PASSWORD=$(cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 32) ; echo "No password provided via FG_PASSWORD!" ; echo "Using random password: $FG_PASSWORD" ; }
+echo "Login for flexget: flexget:${FG_PASSWORD}"
+echo "Login for transmission: ${TR_USERNAME}:${TR_PASSWORD}"
 
-
-flexget -c /etc/flexget/config.yml --loglevel ${FG_LOG_LEVEL:-info} web passwd ${FG_PASSWORD}
-flexget -c /etc/flexget/config.yml --loglevel ${FG_LOG_LEVEL:-info} daemon start --autoreload-config &
+flexget -c /etc/flexget/config.yml --loglevel ${FG_LOG_LEVEL} web passwd ${FG_PASSWORD} > /dev/null
+flexget -c /etc/flexget/config.yml --loglevel ${FG_LOG_LEVEL} daemon start --autoreload-config &
 
 mkdir -p /var/lib/transmission/watch &> /dev/null
-
-[ -z "$TR_USERNAME" ] && { TR_USERNAME=transmission ; echo "No username provided for transmission!" ; echo "Using default username: $TR_USERNAME" ; }
-[ -z "$TR_PASSWORD" ] && { TR_PASSWORD=$(cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 32) ; echo "No password provided for transmission!" ; echo "Using random password: $TR_PASSWORD" ; }
 
 transmission-daemon \
   --foreground \

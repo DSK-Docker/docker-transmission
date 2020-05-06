@@ -3,6 +3,15 @@ FROM alpine:latest
 LABEL maintainer "Dschinghis Kahn"
 
 ####################################################
+######### DEFAULT VALUES                 ###########
+####################################################
+ENV TIMEZONE=UTC
+ENV FG_LOGLEVEL=INFO
+ENV FG_PASSWORD=flexget
+ENV TR_USERNAME=transmission
+ENV TR_PASSWORD=transmission
+
+####################################################
 ######### INSTALLING BASE STUFF          ###########
 ####################################################
 RUN apk add --no-cache python3 && pip3 install --upgrade pip wheel

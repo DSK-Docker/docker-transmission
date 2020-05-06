@@ -5,8 +5,11 @@ Docker image for transmission and flexget.
 ```Docker
 docker create \
   --name=transmission \
-  -e TIMEZONE=<TIMEZONE> \
-  -e FG_PASSWORD=<PASSWORD> \
+  -e TIMEZONE=<<TIMEZONE|default(UTC)>> \
+  -e FG_LOG_LEVEL=<<LOGLEVEL|default(INFO)>> \
+  -e FG_PASSWORD=<<PASSWORD|default(flexget)>> \
+  -e TR_USERNAME=<<USERNAME|default(transmission)>> \
+  -e TR_PASSWORD=<<PASSWORD|default(transmission)>> \
   -p 3539:3539 \
   -p 9091:9091 \
   -p 51413:51413 \
