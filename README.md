@@ -8,6 +8,7 @@ docker create \
   -e TIMEZONE=<<TIMEZONE|default(UTC)>> \
   -e FG_LOG_LEVEL=<<LOGLEVEL|default(INFO)>> \
   -e FG_PASSWORD=<<PASSWORD|default(flexget)>> \
+  -e TR_ALLOWED=<<ALLOWED IPS|default(127.0.0.1,192.168.0.*)>> \
   -e TR_USERNAME=<<USERNAME|default(transmission)>> \
   -e TR_PASSWORD=<<PASSWORD|default(transmission)>> \
   -p 3539:3539 \

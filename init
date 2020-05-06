@@ -1,6 +1,6 @@
 #! /bin/sh
 
-echo ${TIMEZONE} > /etc/timezone
+echo "${TIMEZONE}" > /etc/timezone
 [ -f /etc/flexget/config.yml ] || cat <<EOF >> /etc/flexget/config.yml
 web_server:
   bind: 0.0.0.0
@@ -19,8 +19,8 @@ EOF
 echo "Login for flexget: flexget:${FG_PASSWORD}"
 echo "Login for transmission: ${TR_USERNAME}:${TR_PASSWORD}"
 
-flexget -c /etc/flexget/config.yml --loglevel ${FG_LOG_LEVEL} web passwd ${FG_PASSWORD} > /dev/null
-flexget -c /etc/flexget/config.yml --loglevel ${FG_LOG_LEVEL} daemon start --autoreload-config &
+flexget -c /etc/flexget/config.yml --loglevel "${FG_LOG_LEVEL}" web passwd "${FG_PASSWORD}" > /dev/null
+flexget -c /etc/flexget/config.yml --loglevel "${FG_LOG_LEVEL}" daemon start --autoreload-config &
 
 mkdir -p /var/lib/transmission/watch &> /dev/null
 
@@ -30,5 +30,6 @@ transmission-daemon \
   --port 9091 \
   --peerport 51413 \
   --auth \
-  --username ${TR_USERNAME} \
-  --password ${TR_PASSWORD}
+  --username "${TR_USERNAME}" \
+  --password "${TR_PASSWORD}" \
+  --allowed "${TR_ALLOWED}"
