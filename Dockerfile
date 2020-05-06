@@ -6,7 +6,7 @@ LABEL maintainer "Dschinghis Kahn"
 ######### DEFAULT VALUES                 ###########
 ####################################################
 ENV TIMEZONE=UTC
-ENV FG_LOGLEVEL=INFO
+ENV FG_LOG_LEVEL=info
 ENV FG_PASSWORD=flexget
 ENV TR_USERNAME=transmission
 ENV TR_PASSWORD=transmission
