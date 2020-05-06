@@ -1,0 +1,26 @@
+#! /bin/sh
+
+echo ${TIMEZONE:-UTC} > /etc/timezone
+[ -f /etc/flexget/config.yml ] || cat <<EOF >> /etc/flexget/config.yml
+web_server:
+  bind: 0.0.0.0
+  port: 3539
+
+tasks:
+  task_name:
+    rss: http://example.com
+    series:
+      - name
+
+schedules: no
+
+EOF
+
+[ -z "$FG_PASSWORD" ] && { FG_PASSWORD=$(cat /dev/urandom | tr -dc A-Za-z0-9 | head -c 32) ; echo "No password provided via FG_PASSWORD!" ; echo "Using random password: $FG_PASSWORD" ; }
+
+flexget -c /etc/flexget/config.yml --loglevel ${FG_LOG_LEVEL:-info} web passwd ${FG_PASSWORD}
+flexget -c /etc/flexget/config.yml --loglevel ${FG_LOG_LEVEL:-info} daemon start --autoreload-config &
+
+mkdir -p /var/lib/transmission/watch &> /dev/null
+
+transmission-daemon --foreground --config-dir /etc/transmission --port 9091 --peerport 51413
