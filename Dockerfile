@@ -15,26 +15,33 @@ ENV TR_PASSWORD=transmission
 ####################################################
 ######### INSTALLING BASE STUFF          ###########
 ####################################################
-RUN apk add --no-cache python3 && pip3 install --upgrade pip wheel
+RUN \
+  apk add --no-cache python3 tzdata && \
+  pip3 install --upgrade pip wheel
 
 ####################################################
 ######### INSTALLING FLEXGET             ###########
 ####################################################
-RUN pip install --upgrade flexget
+RUN \
+  pip install --upgrade flexget
 
 ####################################################
 ######### INSTALLING TRANSMISSION PLUGIN ###########
 ####################################################
-RUN pip install --upgrade transmissionrpc
+RUN \
+  pip install --upgrade transmissionrpc
 ####################################################
 ######### INSTALLING DECOMPRESS PLUGIN   ###########
 ####################################################
-RUN apk add --no-cache unrar && pip install --upgrade rarfile
+RUN \
+  apk add --no-cache unrar && \
+  pip install --upgrade rarfile
 
 ####################################################
 ######### INSTALLING TRANSMISSION        ###########
 ####################################################
-RUN apk add --no-cache transmission-daemon
+RUN \
+  apk add --no-cache transmission-daemon
 
 ####################################################
 ######### SETUP FILES & FOLDERS          ###########
@@ -49,7 +56,10 @@ RUN rm -rf /tmp/* /root/.cache
 ####################################################
 ######### DEFINING VOLUMES               ###########
 ####################################################
-VOLUME /etc/flexget /etc/transmission /var/lib/transmission
+VOLUME \
+  /etc/flexget \
+  /etc/transmission \
+  /var/lib/transmission
 
 EXPOSE 3539/TCP
 EXPOSE 9091/TCP
