@@ -16,6 +16,7 @@ ENV TR_PASSWORD=transmission
 ######### INSTALLING BASE STUFF          ###########
 ####################################################
 RUN \
+  apk add --update py-pip && \
   apk add --no-cache python3 tzdata && \
   pip3 install --upgrade pip wheel
 
