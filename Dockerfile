@@ -24,7 +24,7 @@ RUN \
 ######### INSTALLING FLEXGET             ###########
 ####################################################
 RUN \
-  pip install --upgrade flexget
+  pip install --upgrade --ignore-installed six flexget
 
 ####################################################
 ######### INSTALLING TRANSMISSION PLUGIN ###########
