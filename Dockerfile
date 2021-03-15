@@ -30,7 +30,7 @@ RUN \
 ######### INSTALLING TRANSMISSION PLUGIN ###########
 ####################################################
 RUN \
-  pip install --upgrade transmissionrpc
+  pip install --upgrade transmission-rpc
 ####################################################
 ######### INSTALLING DECOMPRESS PLUGIN   ###########
 ####################################################
