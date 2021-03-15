@@ -17,21 +17,20 @@ ENV TR_PASSWORD=transmission
 ####################################################
 RUN \
   apk add --update py-pip && \
-  apk add --no-cache python3 tzdata && \
-  apk add --no-cache g++ && \
-  pip3 install --upgrade pip wheel
+  apk add --no-cache python3 python3-dev tzdata gcc g++
 
 ####################################################
 ######### INSTALLING FLEXGET             ###########
 ####################################################
 RUN \
-  pip install --upgrade --ignore-installed six flexget
+  pip install --upgrade --ignore-installed flexget
 
 ####################################################
 ######### INSTALLING TRANSMISSION PLUGIN ###########
 ####################################################
 RUN \
   pip install --upgrade transmission-rpc
+  
 ####################################################
 ######### INSTALLING DECOMPRESS PLUGIN   ###########
 ####################################################
