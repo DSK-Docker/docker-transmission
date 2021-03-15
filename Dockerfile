@@ -18,6 +18,7 @@ ENV TR_PASSWORD=transmission
 RUN \
   apk add --update py-pip && \
   apk add --no-cache python3 tzdata && \
+  apk add --no-cache g++ && \
   pip3 install --upgrade pip wheel
 
 ####################################################
