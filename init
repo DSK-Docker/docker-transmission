@@ -1,6 +1,7 @@
 #! /bin/sh
 
 echo "${TIMEZONE}" > /etc/timezone
+cp "/usr/share/zoneinfo/${TIMEZONE}" /etc/localtime
 [ -f /etc/flexget/config.yml ] || cat <<EOF >> /etc/flexget/config.yml
 web_server:
   bind: 0.0.0.0
