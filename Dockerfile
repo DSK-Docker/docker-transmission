@@ -17,7 +17,7 @@ ENV TR_PASSWORD=transmission
 ####################################################
 RUN \
   apk add --update py-pip && \
-  apk add --no-cache python3 python3-dev tzdata gcc g++
+  apk add --no-cache linux-headers python3 python3-dev tzdata gcc g++
 
 ####################################################
 ######### INSTALLING FLEXGET             ###########
