@@ -1,4 +1,4 @@
-FROM alpine:3.14.6
+FROM alpine:3.16.0
 
 LABEL maintainer "Dschinghis Kahn"
 
