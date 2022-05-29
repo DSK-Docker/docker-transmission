@@ -35,7 +35,7 @@ RUN \
 ######### INSTALLING DECOMPRESS PLUGIN   ###########
 ####################################################
 RUN \
-  apk add --no-cache unrar && \
+  apk add --no-cache unar && \
   pip install --upgrade rarfile
 
 ####################################################
