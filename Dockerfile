@@ -18,7 +18,7 @@ ENV TR_PASSWORD=transmission
 RUN \
   apt-get update && \
   apt-get install python3 -y && \
-  apt-get install python3-pip procps -y
+  apt-get install python3-pip -y
 #  apt-get install linux-headers python3 python3-dev tzdata gcc g++
 
 ####################################################
