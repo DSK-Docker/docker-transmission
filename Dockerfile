@@ -1,4 +1,4 @@
-FROM alpine:3.14.6
+FROM debian:stable
 
 LABEL maintainer "Dschinghis Kahn"
 
@@ -16,8 +16,10 @@ ENV TR_PASSWORD=transmission
 ######### INSTALLING BASE STUFF          ###########
 ####################################################
 RUN \
-  apk add --update py-pip && \
-  apk add --no-cache linux-headers python3 python3-dev tzdata gcc g++
+  apt-get update && \
+  apt-get install python3 -y && \
+  apt-get install python3-pip -y
+#  apt-get install linux-headers python3 python3-dev tzdata gcc g++
 
 ####################################################
 ######### INSTALLING FLEXGET             ###########
@@ -30,19 +32,19 @@ RUN \
 ####################################################
 RUN \
   pip install --upgrade transmission-rpc
-  
+
 ####################################################
 ######### INSTALLING DECOMPRESS PLUGIN   ###########
 ####################################################
 RUN \
-  apk add --no-cache unrar && \
+  apt-get install unar -y && \
   pip install --upgrade rarfile
 
 ####################################################
 ######### INSTALLING TRANSMISSION        ###########
 ####################################################
 RUN \
-  apk add --no-cache transmission-daemon
+  apt-get install transmission-daemon -y
 
 ####################################################
 ######### SETUP FILES & FOLDERS          ###########
