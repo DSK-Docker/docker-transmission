@@ -1,9 +1,5 @@
 #! /bin/sh
 
-# Requested by transmission:
-sysctl net.core.rmem_max=4194304
-sysctl net.core.wmem_max=1048576
-
 ln -f -n -s /usr/share/zoneinfo/"${TIMEZONE}" /etc/localtime
 echo "${TIMEZONE}" > /etc/timezone
 
