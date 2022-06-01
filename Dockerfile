@@ -17,9 +17,11 @@ ENV TR_PASSWORD=transmission
 ####################################################
 RUN \
   apt-get update && \
-  apt-get install python3 -y && \
-  apt-get install python3-pip procps netcat -y
-#  apt-get install linux-headers python3 python3-dev tzdata gcc g++
+  apt-get install -y \
+    python3 \
+    python3-pip \
+    procps \
+    netcat
 
 ####################################################
 ######### INSTALLING FLEXGET             ###########
@@ -37,14 +39,14 @@ RUN \
 ######### INSTALLING DECOMPRESS PLUGIN   ###########
 ####################################################
 RUN \
-  apt-get install unar -y && \
+  apt-get install -y unar && \
   pip install --upgrade rarfile
 
 ####################################################
 ######### INSTALLING TRANSMISSION        ###########
 ####################################################
 RUN \
-  apt-get install transmission-daemon -y
+  apt-get install -y transmission-daemon
 
 ####################################################
 ######### SETUP FILES & FOLDERS          ###########
